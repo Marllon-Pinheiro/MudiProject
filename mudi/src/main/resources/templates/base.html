@@ -16,15 +16,26 @@
     </style>
   </head>
   
-   <div th:fragment="logo" class="logo-container mb-3 p-3 d-flex justify-content-between">
-  	 	<span class="logo">Mudi</span>
-  	 	<span class="mt-3">
-  	 	<a class="text-light" href="/login" sec:authorize="!isAuthenticated()">Login</a>
-  	 	<a onclick="document.querySelector('#form-login').submit()"  class="text-light" href="#" sec:authorize="isAuthenticated()">Logout</a>
-  	 	<form th:action="@{/logout}" method="POST" id="form-login"></form>
-  	 	</span>
+   <div th:fragment="logo">
+   		 <div class="logo-container p-3 d-flex justify-content-between">
+	  	 	<span class="logo">Mudi</span>
+	  	 	<span class="mt-3">
+	  	 	<a class="text-light mr-2" href="/login" sec:authorize="!isAuthenticated()">Login</a>
+	  	 	<a class="text-light" href="/register" sec:authorize="!isAuthenticated()">Sign up</a>
+	  	 	<a onclick="document.querySelector('#form-login').submit()"  class="text-light" href="#" sec:authorize="isAuthenticated()">Logout</a>
+	  	 	<form th:action="@{/logout}" method="POST" id="form-login"></form>
+	  	 	</span>
+  	 	</div>
+  	 	<div class="row" sec:authorize="isAuthenticated()">
+  	 	  <div class="col">
+  	 		<nav class="nav">
+			  <a class="nav-link" th:href="@{/home}">Home</a>
+			  <a class="nav-link" th:href="@{/usuario/pedido}">Meus Pedidos</a>
+			</nav>
+		  </div>
+  	 	</div>
   	 </div>
   	 
-  	  <div th:fragment="titulo(valor)" class="jumbotron mb-0">
+  	  <div th:fragment="titulo(valor)" class="jumbotron mb-0 mt-2">
          <h1 class="display-4" th:text="${valor}"></h1>
        </div>

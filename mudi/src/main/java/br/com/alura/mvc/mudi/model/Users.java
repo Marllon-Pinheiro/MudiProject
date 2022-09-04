@@ -17,8 +17,11 @@ public class Users {
 	private String username;
 	private String password;
 	
+	private Boolean enabled;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Pedido> pedidos;
+	
 	
 	public String getUsername() {
 		return username;
@@ -35,5 +38,22 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public Boolean getEnabled() {
+		return enabled;
+	}
+	
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+	
+	public Users cadastro() {
+		Users user = new Users();
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setEnabled(true);
+		return user;
+	}
+
 
 }
